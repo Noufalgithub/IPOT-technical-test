@@ -6,7 +6,7 @@ import '../../core/utils/formatters.dart';
 import '../../injection_container.dart';
 import '../../router.dart';
 import 'cubit/order_cubit.dart';
-
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
 class OrderConfirmationScreen extends StatelessWidget {
   final String orderId;
   final String tableId;
@@ -63,8 +63,8 @@ class OrderConfirmationScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    const Text(
-                      'Pesanan Berhasil!',
+                    Text(
+                      AppLocalizations.of(context)!.orderSuccessTitle,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 28,
@@ -73,7 +73,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Pesananmu sedang diproses oleh dapur',
+                      AppLocalizations.of(context)!.orderSuccessMessage,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: AppTheme.textSecondary, fontSize: 15),
                     ),
@@ -93,15 +93,15 @@ class OrderConfirmationScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ID Pesanan', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+                              Text(AppLocalizations.of(context)!.orderId, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   color: AppTheme.warningColor.withValues(alpha: 0.15),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                child: const Text(
-                                  'Menunggu',
+                                child: Text(
+                                  AppLocalizations.of(context)!.statusWaiting,
                                   style: TextStyle(color: AppTheme.warningColor, fontSize: 12, fontWeight: FontWeight.w600),
                                 ),
                               ),
@@ -121,7 +121,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Meja', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+                              Text(AppLocalizations.of(context)!.table, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
                               Text(tableId, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
                             ],
                           ),
@@ -130,13 +130,13 @@ class OrderConfirmationScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('Estimasi Waktu', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+                                Text(AppLocalizations.of(context)!.estimatedTime, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
                                 Row(
                                   children: [
                                     const Icon(Icons.schedule, color: AppTheme.accentColor, size: 16),
                                     const SizedBox(width: 4),
                                     Text(
-                                      '~${order!.estimatedPrepTime} menit',
+                                      '~${AppLocalizations.of(context)!.mins(order!.estimatedPrepTime!)}',
                                       style: const TextStyle(color: AppTheme.accentColor, fontWeight: FontWeight.w600),
                                     ),
                                   ],
@@ -161,7 +161,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text('Total', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+                                Text(AppLocalizations.of(context)!.total, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
                                 Text(
                                   Formatters.formatCurrency(order.totalAmount),
                                   style: const TextStyle(color: AppTheme.accentColor, fontSize: 16, fontWeight: FontWeight.w900),
@@ -189,7 +189,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                               );
                             },
                             icon: const Icon(Icons.track_changes),
-                            label: const Text('Lacak Pesanan'),
+                            label: Text(AppLocalizations.of(context)!.trackOrder),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -200,7 +200,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                               context.go('${AppRouter.menu}?tableId=$tableId');
                             },
                             icon: const Icon(Icons.add_shopping_cart),
-                            label: const Text('Tambah Pesanan Lagi'),
+                            label: Text(AppLocalizations.of(context)!.orderMore),
                           ),
                         ),
                       ],

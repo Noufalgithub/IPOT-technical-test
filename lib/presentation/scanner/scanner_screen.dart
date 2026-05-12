@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../core/theme/app_theme.dart';
 import '../../router.dart';
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({super.key});
@@ -95,7 +96,7 @@ class _ScannerScreenState extends State<ScannerScreen>
       _controller?.stop();
       _navigateToMenu(tableId);
     } else {
-      _showErrorSnackbar('QR Code tidak valid. Coba scan ulang.');
+      _showErrorSnackbar(AppLocalizations.of(context)!.invalidQrCode);
     }
   }
 
@@ -235,7 +236,7 @@ class _ScannerScreenState extends State<ScannerScreen>
             ),
             const SizedBox(height: 32),
             Text(
-              'Masukkan Nomor Meja',
+              AppLocalizations.of(context)!.enterTableId,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
@@ -243,7 +244,7 @@ class _ScannerScreenState extends State<ScannerScreen>
             ),
             const SizedBox(height: 8),
             Text(
-              'Masukkan nomor meja Anda untuk melihat menu',
+              AppLocalizations.of(context)!.enterTableIdDescription,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppTheme.textSecondary,
@@ -258,7 +259,7 @@ class _ScannerScreenState extends State<ScannerScreen>
               style: const TextStyle(color: Colors.white, fontSize: 18),
               textAlign: TextAlign.center,
               decoration: InputDecoration(
-                hintText: 'Contoh: T001',
+                hintText: AppLocalizations.of(context)!.exampleTableId,
                 prefixIcon: const Icon(Icons.table_restaurant,
                     color: AppTheme.accentColor),
               ),
@@ -270,14 +271,14 @@ class _ScannerScreenState extends State<ScannerScreen>
                 onPressed: () {
                   final value = _manualController.text.trim();
                   if (value.isEmpty) {
-                    _showErrorSnackbar('Masukkan nomor meja terlebih dahulu');
+                    _showErrorSnackbar(AppLocalizations.of(context)!.emptyTableIdError);
                     return;
                   }
                   _processQRValue(value);
                 },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 4),
-                  child: Text('Lihat Menu'),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Text(AppLocalizations.of(context)!.seeMenu),
                 ),
               ),
             ),
@@ -286,7 +287,7 @@ class _ScannerScreenState extends State<ScannerScreen>
               TextButton(
                 onPressed: () => setState(() => _useManualInput = false),
                 child: Text(
-                  'Scan QR Code',
+                  AppLocalizations.of(context)!.scanQrCode,
                   style: TextStyle(color: AppTheme.accentColor),
                 ),
               ),
@@ -310,9 +311,9 @@ class _ScannerScreenState extends State<ScannerScreen>
         children: [
           const Icon(Icons.qr_code_2, color: AppTheme.accentColor, size: 32),
           const SizedBox(height: 12),
-          const Text(
-            'Arahkan kamera ke QR Code meja',
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.pointCameraToQr,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -320,14 +321,14 @@ class _ScannerScreenState extends State<ScannerScreen>
           ),
           const SizedBox(height: 6),
           Text(
-            'QR Code tersedia di atas meja Anda',
+            AppLocalizations.of(context)!.qrAvailableOnTable,
             style: TextStyle(color: AppTheme.textSecondary, fontSize: 13),
           ),
           const SizedBox(height: 16),
           TextButton(
             onPressed: () => setState(() => _useManualInput = true),
             child: Text(
-              'Input manual nomor meja',
+              AppLocalizations.of(context)!.manualInputTableId,
               style: TextStyle(color: AppTheme.accentColor),
             ),
           ),

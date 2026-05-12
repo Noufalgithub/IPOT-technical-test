@@ -10,7 +10,7 @@ import '../../router.dart';
 import '../cart/cubit/cart_cubit.dart';
 import 'cubit/menu_cubit.dart';
 import 'widgets/customization_bottom_sheet.dart';
-
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
 class MenuScreen extends StatelessWidget {
   final String tableId;
 
@@ -77,13 +77,13 @@ class _MenuViewState extends State<_MenuView>
   }
 
   Widget _buildLoading() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircularProgressIndicator(color: AppTheme.accentColor),
-          SizedBox(height: 16),
-          Text('Memuat menu...', style: TextStyle(color: AppTheme.textSecondary)),
+          const CircularProgressIndicator(color: AppTheme.accentColor),
+          const SizedBox(height: 16),
+          Text(AppLocalizations.of(context)!.loadingMenu, style: const TextStyle(color: AppTheme.textSecondary)),
         ],
       ),
     );
@@ -96,13 +96,13 @@ class _MenuViewState extends State<_MenuView>
         children: [
           const Icon(Icons.error_outline, color: AppTheme.errorColor, size: 64),
           const SizedBox(height: 16),
-          const Text('Gagal memuat menu', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(AppLocalizations.of(context)!.failedLoadMenu, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(message, style: TextStyle(color: AppTheme.textSecondary), textAlign: TextAlign.center),
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () => context.read<MenuCubit>().loadMenu(widget.tableId),
-            child: const Text('Coba Lagi'),
+            child: Text(AppLocalizations.of(context)!.tryAgain),
           ),
         ],
       ),
@@ -137,9 +137,9 @@ class _MenuViewState extends State<_MenuView>
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Menu', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
+                    Text(AppLocalizations.of(context)!.menu, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
                     Text(
-                      'Meja ${widget.tableId}',
+                      '${AppLocalizations.of(context)!.table} ${widget.tableId}',
                       style: const TextStyle(color: AppTheme.accentColor, fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -182,7 +182,7 @@ class _MenuViewState extends State<_MenuView>
       autofocus: true,
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintText: 'Cari menu...',
+        hintText: AppLocalizations.of(context)!.searchMenu,
         hintStyle: TextStyle(color: AppTheme.textHint),
         border: InputBorder.none,
         fillColor: Colors.transparent,
@@ -222,13 +222,13 @@ class _MenuViewState extends State<_MenuView>
         children: [
           const Icon(Icons.search_off, color: AppTheme.textHint, size: 64),
           const SizedBox(height: 16),
-          const Text('Menu tidak ditemukan', style: TextStyle(color: Colors.white, fontSize: 18)),
+          Text(AppLocalizations.of(context)!.noMenuFound, style: const TextStyle(color: Colors.white, fontSize: 18)),
           TextButton(
             onPressed: () {
               _searchController.clear();
               context.read<MenuCubit>().clearSearch();
             },
-            child: const Text('Hapus pencarian'),
+            child: Text(AppLocalizations.of(context)!.clearSearch),
           ),
         ],
       ),
@@ -300,9 +300,9 @@ class _MenuItemCard extends StatelessWidget {
                     if (!item.isAvailable)
                       Container(
                         color: Colors.black54,
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            'Habis',
+                            AppLocalizations.of(context)!.outOfStock,
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -375,7 +375,7 @@ class _MenuItemCard extends StatelessWidget {
                             const Icon(Icons.schedule, size: 12, color: AppTheme.textHint),
                             const SizedBox(width: 4),
                             Text(
-                              '~${item.estimatedPrepTime} menit',
+                              '~${AppLocalizations.of(context)!.mins(item.estimatedPrepTime!)}',
                               style: const TextStyle(color: AppTheme.textHint, fontSize: 11),
                             ),
                           ],
@@ -409,12 +409,12 @@ class _MenuItemCard extends StatelessWidget {
           color: AppTheme.accentColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.add, color: Colors.white, size: 14),
-            SizedBox(width: 4),
-            Text('Tambah', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+            const Icon(Icons.add, color: Colors.white, size: 14),
+            const SizedBox(width: 4),
+            Text(AppLocalizations.of(context)!.add, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
@@ -517,9 +517,9 @@ class _CartFabWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Lihat Keranjang',
+                        AppLocalizations.of(context)!.viewCart,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,

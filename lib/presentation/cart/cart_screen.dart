@@ -8,7 +8,7 @@ import '../../router.dart';
 import '../cart/cubit/cart_cubit.dart';
 import '../order/cubit/order_cubit.dart';
 import '../../data/models/cart_item_model.dart';
-
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
 class CartScreen extends StatefulWidget {
   final String tableId;
 
@@ -48,7 +48,7 @@ class _CartScreenState extends State<CartScreen> {
           } else if (state is OrderError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Gagal membuat pesanan: ${state.message}'),
+                content: Text(AppLocalizations.of(context)!.failedCreateOrder(state.message)),
                 backgroundColor: AppTheme.errorColor,
               ),
             );
@@ -82,8 +82,8 @@ class _CartView extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Keranjang', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
-                Text('$count item', style: const TextStyle(color: AppTheme.accentColor, fontSize: 12)),
+                Text(AppLocalizations.of(context)!.cart, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
+                Text(AppLocalizations.of(context)!.itemCount(count), style: const TextStyle(color: AppTheme.accentColor, fontSize: 12)),
               ],
             );
           },
@@ -94,7 +94,7 @@ class _CartView extends StatelessWidget {
               if (state is! CartUpdated) return const SizedBox.shrink();
               return TextButton(
                 onPressed: () => _showClearDialog(context),
-                child: const Text('Hapus Semua', style: TextStyle(color: AppTheme.errorColor, fontSize: 13)),
+                child: Text(AppLocalizations.of(context)!.clearAll, style: const TextStyle(color: AppTheme.errorColor, fontSize: 13)),
               );
             },
           ),
@@ -125,14 +125,14 @@ class _CartView extends StatelessWidget {
             child: const Icon(Icons.shopping_cart_outlined, color: AppTheme.textHint, size: 50),
           ),
           const SizedBox(height: 24),
-          const Text('Keranjang Kosong', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700)),
+          Text(AppLocalizations.of(context)!.emptyCart, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700)),
           const SizedBox(height: 8),
-          Text('Tambahkan menu favoritmu!', style: TextStyle(color: AppTheme.textSecondary)),
+          Text(AppLocalizations.of(context)!.addFavoriteMenu, style: const TextStyle(color: AppTheme.textSecondary)),
           const SizedBox(height: 24),
           ElevatedButton.icon(
             onPressed: () => context.pop(),
             icon: const Icon(Icons.restaurant_menu),
-            label: const Text('Lihat Menu'),
+            label: Text(AppLocalizations.of(context)!.viewMenu),
           ),
         ],
       ),
@@ -159,7 +159,7 @@ class _CartView extends StatelessWidget {
                   children: [
                     const Icon(Icons.table_restaurant, color: AppTheme.accentColor, size: 20),
                     const SizedBox(width: 10),
-                    const Text('Meja', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+                    Text(AppLocalizations.of(context)!.table, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
                     const Spacer(),
                     Text(
                       tableId,
@@ -188,7 +188,7 @@ class _CartView extends StatelessWidget {
                   maxLines: 3,
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                   decoration: InputDecoration(
-                    hintText: 'Catatan untuk dapur (opsional)...\nContoh: Tanpa bawang, tidak pedas',
+                    hintText: AppLocalizations.of(context)!.kitchenNoteHint,
                     hintStyle: TextStyle(color: AppTheme.textHint, fontSize: 13),
                     border: InputBorder.none,
                     fillColor: Colors.transparent,
@@ -205,7 +205,7 @@ class _CartView extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Order summary
-              _buildSummary(state),
+              _buildSummary(context, state),
             ],
           ),
         ),
@@ -216,7 +216,7 @@ class _CartView extends StatelessWidget {
     );
   }
 
-  Widget _buildSummary(CartUpdated state) {
+  Widget _buildSummary(BuildContext context, CartUpdated state) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -229,8 +229,8 @@ class _CartView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Subtotal (${state.totalItems} item)',
-                  style: TextStyle(color: AppTheme.textSecondary)),
+              Text(AppLocalizations.of(context)!.subtotal(state.totalItems),
+                  style: const TextStyle(color: AppTheme.textSecondary)),
               Text(Formatters.formatCurrency(state.totalPrice),
                   style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
             ],
@@ -241,7 +241,7 @@ class _CartView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Total', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
+              Text(AppLocalizations.of(context)!.total, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
               Text(
                 Formatters.formatCurrency(state.totalPrice),
                 style: const TextStyle(
@@ -274,10 +274,10 @@ class _CartView extends StatelessWidget {
                   ? null
                   : () => _placeOrder(context, state),
               child: isLoading
-                  ? const Row(
+                  ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 18,
                           height: 18,
                           child: CircularProgressIndicator(
@@ -286,11 +286,11 @@ class _CartView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 12),
-                        Text('Memproses Pesanan...'),
+                        Text(AppLocalizations.of(context)!.processingOrder),
                       ],
                     )
                   : Text(
-                      'Pesan Sekarang • ${Formatters.formatCurrency(state.totalPrice)}',
+                      '${AppLocalizations.of(context)!.orderNow} • ${Formatters.formatCurrency(state.totalPrice)}',
                       style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                     ),
             ),
@@ -315,20 +315,20 @@ class _CartView extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: AppTheme.surfaceMedium,
-        title: const Text('Hapus Keranjang', style: TextStyle(color: Colors.white)),
-        content: const Text('Hapus semua item dari keranjang?',
-            style: TextStyle(color: AppTheme.textSecondary)),
+        title: Text(AppLocalizations.of(context)!.clearCartTitle, style: const TextStyle(color: Colors.white)),
+        content: Text(AppLocalizations.of(context)!.clearCartContent,
+            style: const TextStyle(color: AppTheme.textSecondary)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Batal'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(ctx);
               context.read<CartCubit>().clearCart();
             },
-            child: const Text('Hapus', style: TextStyle(color: AppTheme.errorColor)),
+            child: Text(AppLocalizations.of(context)!.delete, style: const TextStyle(color: AppTheme.errorColor)),
           ),
         ],
       ),
@@ -372,7 +372,7 @@ class _CartItemTile extends StatelessWidget {
                 if (item.note != null) ...[
                   const SizedBox(height: 4),
                   Text(
-                    'Catatan: ${item.note}',
+                    '${AppLocalizations.of(context)!.note}: ${item.note}',
                     style: TextStyle(color: AppTheme.textHint, fontSize: 12, fontStyle: FontStyle.italic),
                   ),
                 ],

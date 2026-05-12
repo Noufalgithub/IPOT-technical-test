@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
 import 'core/theme/app_theme.dart';
 import 'injection_container.dart';
 import 'router.dart';
@@ -37,6 +39,13 @@ class IPOTOrderingApp extends StatelessWidget {
       title: 'IPOT Digital Ordering',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: AppRouter.router,
     );
   }

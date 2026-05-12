@@ -1,0 +1,170 @@
+{
+  "@@locale": "en",
+  "seeMenu": "See Menu",
+  "scanQrToOrder": "Scan QR Code to Order",
+  "positionQr": "Position QR code within frame to scan",
+  "needCameraPermission": "We need camera permission to scan QR code",
+  "cameraError": "Camera Error",
+  "or": "OR",
+  "enterTableId": "Enter Table ID",
+  "submit": "Submit",
+  "tableId": "Table ID",
+  "enterTableIdDescription": "Enter your table number to view the menu",
+  "exampleTableId": "Example: T001",
+  "emptyTableIdError": "Please enter a table number first",
+  "scanQrCode": "Scan QR Code",
+  "pointCameraToQr": "Point camera to table QR code",
+  "qrAvailableOnTable": "QR Code is available on your table",
+  "manualInputTableId": "Manual input of table number",
+  "invalidQrCode": "Invalid QR Code. Please try scanning again.",
+  "outOfStock": "Out of Stock",
+  "viewCart": "View Cart",
+  "failedCreateOrder": "Failed to create order: {message}",
+  "@failedCreateOrder": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "cart": "Cart",
+  "itemCount": "{count} item(s)",
+  "@itemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearAll": "Clear All",
+  "emptyCart": "Empty Cart",
+  "addFavoriteMenu": "Add your favorite menu!",
+  "viewMenu": "View Menu",
+  "kitchenNoteHint": "Note for kitchen (optional)...\nExample: No onions, not spicy",
+  "subtotal": "Subtotal ({count} items)",
+  "@subtotal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "total": "Total",
+  "processingOrder": "Processing Order...",
+  "orderNow": "Order Now",
+  "clearCartTitle": "Clear Cart",
+  "clearCartContent": "Clear all items from cart?",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "note": "Note",
+  "orderSuccessTitle": "Order Successful!",
+  "orderSuccessMessage": "Your order is being processed by the kitchen",
+  "orderId": "Order ID",
+  "statusWaiting": "Waiting",
+  "estimatedTime": "Estimated Time",
+  "trackOrder": "Track Order",
+  "orderMore": "Order More",
+  "liveUpdate": "Live Update",
+  "orderStatus": "Order Status",
+  "orderDetail": "Order Detail",
+  "orderCompleted": "Order Completed",
+  "statusPending": "Waiting",
+  "statusConfirmed": "Confirmed",
+  "statusPreparing": "Preparing",
+  "statusReady": "Ready",
+  "statusServed": "Served",
+  "statusCancelled": "Cancelled",
+  "descPending": "Your order is waiting for cashier confirmation",
+  "descConfirmed": "Your order has been confirmed!",
+  "descPreparing": "The kitchen is preparing your order...",
+  "descReady": "Your order is ready! Will be served shortly",
+  "descServed": "Enjoy your meal!",
+
+  "loadingMenu": "Loading menu...",
+  "failedLoadMenu": "Failed to load menu",
+  "tryAgain": "Try Again",
+  "menu": "Menu",
+  "noMenuFound": "Menu not found",
+  "clearSearch": "Clear search",
+  "add": "Add",
+  "pleaseSelectAllRequired": "Please select all required options",
+  "addedToCart": "{itemName} added to cart",
+  "@addedToCart": {
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
+  "optional": "Optional",
+  "required": "Required",
+  "chooseOption": "Choose 1",
+  "chooseMultiple": "Choose multiple",
+  "addToCart": "Add to Cart",
+  "updateItem": "Update Item",
+  "searchMenu": "Search menu...",
+
+  "failedPlaceOrder": "Failed to place order: {message}",
+  "@failedPlaceOrder": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "cart": "Cart",
+  "itemsCount": "{count} items",
+  "@itemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearAll": "Clear All",
+  "cartEmpty": "Cart is Empty",
+  "addFavoriteMenu": "Add your favorite menu!",
+  "subtotal": "Subtotal ({count} items)",
+  "@subtotal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "total": "Total",
+  "addNote": "Add note (optional)",
+  "note": "Note",
+  "checkout": "Checkout",
+  "processingOrder": "Processing Order...",
+  "clearCartTitle": "Clear Cart",
+  "clearCartMessage": "Remove all items from cart?",
+  "cancel": "Cancel",
+  "remove": "Remove",
+  "table": "Table",
+
+  "orderID": "Order ID",
+  "estimatedTime": "Estimated Time",
+  "mins": "{time} mins",
+  "@mins": {
+    "placeholders": {
+      "time": {
+        "type": "int"
+      }
+    }
+  },
+  "trackOrder": "Track Order",
+  "orderMore": "Order More",
+  "orderPlaced": "Order Placed Successfully!",
+  "liveUpdate": "Live Update",
+  "orderStatus": "Order Status",
+  "orderDetails": "Order Details",
+  "orderCompleted": "Order Completed",
+
+  "statusPending": "Waiting for Confirmation",
+  "statusConfirmed": "Confirmed",
+  "statusPreparing": "Preparing",
+  "statusReady": "Ready to Serve",
+  "statusServed": "Served",
+  "statusCancelled": "Cancelled"
+}

@@ -8,23 +8,6 @@ enum OrderStatus {
   served,
   cancelled;
 
-  String get label {
-    switch (this) {
-      case OrderStatus.pending:
-        return 'Menunggu Konfirmasi';
-      case OrderStatus.confirmed:
-        return 'Dikonfirmasi';
-      case OrderStatus.preparing:
-        return 'Sedang Disiapkan';
-      case OrderStatus.ready:
-        return 'Siap Disajikan';
-      case OrderStatus.served:
-        return 'Telah Disajikan';
-      case OrderStatus.cancelled:
-        return 'Dibatalkan';
-    }
-  }
-
   static OrderStatus fromString(String value) {
     switch (value.toLowerCase()) {
       case 'confirmed':

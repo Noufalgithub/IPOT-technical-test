@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/api_constants.dart';
 import '../datasources/api_client.dart';
 import '../datasources/mock_data.dart';
@@ -10,6 +12,8 @@ class MenuRepository {
   MenuRepository(this._apiClient);
 
   Future<List<CategoryModel>> getMenu(String tableId) async {
+    final cacheKey = '${ApiConstants.menuCacheKey}$tableId';
+    
     try {
       final response = await _apiClient.get(
         ApiConstants.menu,
@@ -20,18 +24,40 @@ class MenuRepository {
         final data = response.data;
         final List<dynamic> categoriesJson =
             data['data']?['categories'] ?? data['categories'] ?? [];
+            
+        // Save to cache
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(cacheKey, jsonEncode(categoriesJson));
+
         return categoriesJson
             .map((c) => CategoryModel.fromJson(c as Map<String, dynamic>))
             .toList();
       }
       throw Exception('Failed to load menu: ${response.statusCode}');
     } on DioException catch (_) {
-      // Fallback to mock data when API is unavailable
-      await Future.delayed(const Duration(milliseconds: 800)); // Simulate load
-      return MockData.getMenuCategories();
+      return _getFallbackData(cacheKey);
     } catch (_) {
-      await Future.delayed(const Duration(milliseconds: 800));
-      return MockData.getMenuCategories();
+      return _getFallbackData(cacheKey);
     }
+  }
+  
+  Future<List<CategoryModel>> _getFallbackData(String cacheKey) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final cachedData = prefs.getString(cacheKey);
+      
+      if (cachedData != null) {
+        final List<dynamic> decodedData = jsonDecode(cachedData);
+        return decodedData
+            .map((c) => CategoryModel.fromJson(c as Map<String, dynamic>))
+            .toList();
+      }
+    } catch (_) {
+      // If parsing cache fails, ignore and use mock data
+    }
+    
+    // Simulate load time if falling back to mock data
+    await Future.delayed(const Duration(milliseconds: 800));
+    return MockData.getMenuCategories();
   }
 }

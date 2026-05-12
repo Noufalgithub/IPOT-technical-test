@@ -5,6 +5,24 @@ import '../../core/theme/app_theme.dart';
 import '../../router.dart';
 import '../../data/models/order_model.dart';
 import 'cubit/order_cubit.dart';
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
+
+String getLocalizedStatusLabel(BuildContext context, OrderStatus status) {
+  switch (status) {
+    case OrderStatus.pending:
+      return AppLocalizations.of(context)!.statusPending;
+    case OrderStatus.confirmed:
+      return AppLocalizations.of(context)!.statusConfirmed;
+    case OrderStatus.preparing:
+      return AppLocalizations.of(context)!.statusPreparing;
+    case OrderStatus.ready:
+      return AppLocalizations.of(context)!.statusReady;
+    case OrderStatus.served:
+      return AppLocalizations.of(context)!.statusServed;
+    case OrderStatus.cancelled:
+      return AppLocalizations.of(context)!.statusCancelled;
+  }
+}
 
 class OrderTrackingScreen extends StatefulWidget {
   final String orderId;
@@ -43,7 +61,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Lacak Pesanan', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
+                Text(AppLocalizations.of(context)!.trackOrder, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
                 if (isPolling)
                   Row(
                     children: [
@@ -56,7 +74,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      const Text('Live Update', style: TextStyle(color: AppTheme.successColor, fontSize: 11)),
+                      Text(AppLocalizations.of(context)!.liveUpdate, style: const TextStyle(color: AppTheme.successColor, fontSize: 11)),
                     ],
                   ),
               ],
@@ -99,7 +117,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('ID Pesanan', style: TextStyle(color: AppTheme.textSecondary, fontSize: 12)),
+                    Text(AppLocalizations.of(context)!.orderId, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 12)),
                     Text(order.id, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800, letterSpacing: 1)),
                   ],
                 ),
@@ -111,7 +129,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
           const SizedBox(height: 24),
 
           // Status stepper
-          const Text('Status Pesanan', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
+          Text(AppLocalizations.of(context)!.orderStatus, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
           const SizedBox(height: 16),
 
           ...statuses.asMap().entries.map((entry) {
@@ -122,6 +140,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             final isLast = index == statuses.length - 1;
 
             return _buildStepItem(
+              context: context,
               status: status,
               isDone: isDone,
               isActive: isActive,
@@ -147,9 +166,9 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Estimasi Waktu', style: TextStyle(color: AppTheme.accentColor, fontSize: 12)),
+                      Text(AppLocalizations.of(context)!.estimatedTime, style: const TextStyle(color: AppTheme.accentColor, fontSize: 12)),
                       Text(
-                        '~${order.estimatedPrepTime} menit',
+                        '~${AppLocalizations.of(context)!.mins(order.estimatedPrepTime!)}',
                         style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w800),
                       ),
                     ],
@@ -161,7 +180,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
           const SizedBox(height: 24),
 
           // Order items
-          const Text('Detail Pesanan', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
+          Text(AppLocalizations.of(context)!.orderDetail, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
           const SizedBox(height: 12),
           Container(
             padding: const EdgeInsets.all(16),
@@ -206,7 +225,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => context.go(AppRouter.scanner),
-                child: const Text('Pesanan Selesai'),
+                child: Text(AppLocalizations.of(context)!.orderCompleted),
               ),
             ),
         ],
@@ -215,6 +234,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
   }
 
   Widget _buildStepItem({
+    required BuildContext context,
     required OrderStatus status,
     required bool isDone,
     required bool isActive,
@@ -275,7 +295,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  status.label,
+                  getLocalizedStatusLabel(context, status),
                   style: TextStyle(
                     color: isDone ? Colors.white : AppTheme.textHint,
                     fontSize: 14,
@@ -285,7 +305,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                 if (isActive) ...[
                   const SizedBox(height: 4),
                   Text(
-                    _getStatusDescription(status),
+                    _getStatusDescription(context, status),
                     style: TextStyle(color: AppTheme.accentColor, fontSize: 12),
                   ),
                 ],
@@ -314,18 +334,18 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
     }
   }
 
-  String _getStatusDescription(OrderStatus status) {
+  String _getStatusDescription(BuildContext context, OrderStatus status) {
     switch (status) {
       case OrderStatus.pending:
-        return 'Pesananmu menunggu konfirmasi kasir';
+        return AppLocalizations.of(context)!.descPending;
       case OrderStatus.confirmed:
-        return 'Pesananmu sudah dikonfirmasi!';
+        return AppLocalizations.of(context)!.descConfirmed;
       case OrderStatus.preparing:
-        return 'Dapur sedang menyiapkan pesananmu...';
+        return AppLocalizations.of(context)!.descPreparing;
       case OrderStatus.ready:
-        return 'Pesananmu siap! Akan segera disajikan';
+        return AppLocalizations.of(context)!.descReady;
       case OrderStatus.served:
-        return 'Selamat menikmati!';
+        return AppLocalizations.of(context)!.descServed;
       default:
         return '';
     }
@@ -364,7 +384,7 @@ class _StatusBadge extends StatelessWidget {
         border: Border.all(color: _color.withValues(alpha: 0.4)),
       ),
       child: Text(
-        status.label,
+        getLocalizedStatusLabel(context, status),
         style: TextStyle(color: _color, fontSize: 12, fontWeight: FontWeight.w600),
       ),
     );

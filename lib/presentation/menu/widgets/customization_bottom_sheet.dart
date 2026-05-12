@@ -4,6 +4,7 @@ import '../../../core/utils/formatters.dart';
 import '../../../data/models/cart_item_model.dart';
 import '../../../data/models/customization_model.dart';
 import '../../../data/models/menu_item_model.dart';
+import 'package:ipot_technical_test/l10n/app_localizations.dart';
 
 class CustomizationBottomSheet extends StatefulWidget {
   final MenuItemModel item;
@@ -76,7 +77,7 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
   void _onAddToCart() {
     if (!_isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Harap pilih semua opsi yang diperlukan')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.pleaseSelectAllRequired)),
       );
       return;
     }
@@ -105,7 +106,7 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
           children: [
             const Icon(Icons.check_circle, color: AppTheme.successColor),
             const SizedBox(width: 8),
-            Text('${widget.item.name} ditambahkan ke keranjang'),
+            Text(AppLocalizations.of(context)!.addedToCart(widget.item.name)),
           ],
         ),
         duration: const Duration(seconds: 2),
@@ -250,8 +251,8 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
                   color: AppTheme.accentColor.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: const Text(
-                  'Wajib',
+                child: Text(
+                  AppLocalizations.of(context)!.required,
                   style: TextStyle(
                     color: AppTheme.accentColor,
                     fontSize: 11,
@@ -261,7 +262,7 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
               ),
             if (!group.required)
               Text(
-                'Opsional',
+                AppLocalizations.of(context)!.optional,
                 style: TextStyle(color: AppTheme.textHint, fontSize: 12),
               ),
           ],
@@ -460,7 +461,7 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
                 disabledBackgroundColor: AppTheme.surfaceLight,
               ),
               child: Text(
-                'Tambah • ${Formatters.formatCurrency(_totalPrice)}',
+                '${AppLocalizations.of(context)!.add} • ${Formatters.formatCurrency(_totalPrice)}',
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
               ),
             ),

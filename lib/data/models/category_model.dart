@@ -28,6 +28,14 @@ class CategoryModel extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'image_url': imageUrl,
+        'sort_order': sortOrder,
+        'items': items.map((i) => i.toJson()).toList(),
+      };
+
   @override
   List<Object?> get props => [id, name, sortOrder];
 }
