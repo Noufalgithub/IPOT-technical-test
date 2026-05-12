@@ -336,7 +336,7 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
             ),
             if (option.priceModifier != 0)
               Text(
-                Formatters.formatPrice(option.priceModifier),
+                Formatters.formatPrice(option.priceModifier, context),
                 style: TextStyle(
                   color: isSelected ? AppTheme.accentColor : AppTheme.textHint,
                   fontSize: 13,
@@ -398,7 +398,7 @@ class _CustomizationBottomSheetState extends State<CustomizationBottomSheet> {
             ),
             if (option.priceModifier != 0)
               Text(
-                Formatters.formatPrice(option.priceModifier),
+                Formatters.formatPrice(option.priceModifier, context),
                 style: TextStyle(
                   color: isSelected ? AppTheme.accentColor : AppTheme.textHint,
                   fontSize: 13,

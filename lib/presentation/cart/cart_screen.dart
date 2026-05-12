@@ -159,7 +159,9 @@ class _CartView extends StatelessWidget {
                   children: [
                     const Icon(Icons.table_restaurant, color: AppTheme.accentColor, size: 20),
                     const SizedBox(width: 10),
-                    Text(AppLocalizations.of(context)!.table, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+                      Text(AppLocalizations.of(context)!.tableLabel,
+                          style: const TextStyle(
+                              color: AppTheme.textSecondary, fontSize: 13)),
                     const Spacer(),
                     Text(
                       tableId,

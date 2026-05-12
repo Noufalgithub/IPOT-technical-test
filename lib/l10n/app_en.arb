@@ -37,7 +37,7 @@
     }
   },
   "clearAll": "Clear All",
-  "emptyCart": "Empty Cart",
+  "emptyCart": "Cart is Empty",
   "addFavoriteMenu": "Add your favorite menu!",
   "viewMenu": "View Menu",
   "kitchenNoteHint": "Note for kitchen (optional)...\nExample: No onions, not spicy",
@@ -104,47 +104,21 @@
   "updateItem": "Update Item",
   "searchMenu": "Search menu...",
 
-  "failedPlaceOrder": "Failed to place order: {message}",
-  "@failedPlaceOrder": {
+  "addNote": "Add note (optional)",
+  "checkout": "Checkout",
+  "remove": "Remove",
+  "table": "Table {id}",
+  "@table": {
     "placeholders": {
-      "message": {
+      "id": {
         "type": "String"
       }
     }
   },
-  "cart": "Cart",
-  "itemsCount": "{count} items",
-  "@itemsCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "clearAll": "Clear All",
-  "cartEmpty": "Cart is Empty",
-  "addFavoriteMenu": "Add your favorite menu!",
-  "subtotal": "Subtotal ({count} items)",
-  "@subtotal": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "total": "Total",
-  "addNote": "Add note (optional)",
-  "note": "Note",
-  "checkout": "Checkout",
-  "processingOrder": "Processing Order...",
-  "clearCartTitle": "Clear Cart",
-  "clearCartMessage": "Remove all items from cart?",
-  "cancel": "Cancel",
-  "remove": "Remove",
-  "table": "Table",
+  "tableLabel": "Table",
+  "free": "Free",
+  "digitalOrdering": "Digital Ordering",
 
-  "orderID": "Order ID",
-  "estimatedTime": "Estimated Time",
   "mins": "{time} mins",
   "@mins": {
     "placeholders": {
@@ -152,19 +126,6 @@
         "type": "int"
       }
     }
-  },
-  "trackOrder": "Track Order",
-  "orderMore": "Order More",
-  "orderPlaced": "Order Placed Successfully!",
-  "liveUpdate": "Live Update",
-  "orderStatus": "Order Status",
-  "orderDetails": "Order Details",
-  "orderCompleted": "Order Completed",
-
-  "statusPending": "Waiting for Confirmation",
-  "statusConfirmed": "Confirmed",
-  "statusPreparing": "Preparing",
-  "statusReady": "Ready to Serve",
-  "statusServed": "Served",
-  "statusCancelled": "Cancelled"
+  }
 }
+

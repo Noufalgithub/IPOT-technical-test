@@ -118,7 +118,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(AppLocalizations.of(context)!.table, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+                              Text(AppLocalizations.of(context)!.tableLabel, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
                               Text(tableId, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
                             ],
                           ),

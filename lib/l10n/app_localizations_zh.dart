@@ -79,13 +79,13 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get clearAll => '清空';
+  String get clearAll => '全部清除';
 
   @override
   String get emptyCart => '购物车为空';
 
   @override
-  String get addFavoriteMenu => '添加您喜欢的菜单！';
+  String get addFavoriteMenu => '添加您最喜欢的菜单！';
 
   @override
   String get viewMenu => '查看菜单';
@@ -95,7 +95,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String subtotal(int count) {
-    return '小计 ($count 件)';
+    return '小计 ($count 件商品)';
   }
 
   @override
@@ -156,7 +156,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get orderCompleted => '订单已完成';
 
   @override
-  String get statusPending => '等待确认';
+  String get statusPending => '等待中';
 
   @override
   String get statusConfirmed => '已确认';
@@ -165,10 +165,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get statusPreparing => '准备中';
 
   @override
-  String get statusReady => '准备就绪';
+  String get statusReady => '已准备好';
 
   @override
-  String get statusServed => '已送达';
+  String get statusServed => '已上菜';
 
   @override
   String get statusCancelled => '已取消';
@@ -239,44 +239,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get searchMenu => '搜索菜单...';
 
   @override
-  String failedPlaceOrder(String message) {
-    return '下单失败: $message';
-  }
-
-  @override
-  String itemsCount(int count) {
-    return '$count 件商品';
-  }
-
-  @override
-  String get cartEmpty => '购物车为空';
-
-  @override
   String get addNote => '添加备注 (选填)';
 
   @override
   String get checkout => '去结账';
 
   @override
-  String get clearCartMessage => '是否清空购物车中的所有商品？';
-
-  @override
   String get remove => '移除';
 
   @override
-  String get table => '桌号';
+  String table(String id) {
+    return '$id 号桌';
+  }
 
   @override
-  String get orderID => '订单编号';
+  String get tableLabel => '桌号';
+
+  @override
+  String get free => '免费';
+
+  @override
+  String get digitalOrdering => '数字化点餐';
 
   @override
   String mins(int time) {
     return '$time 分钟';
   }
-
-  @override
-  String get orderPlaced => '下单成功！';
-
-  @override
-  String get orderDetails => '订单详情';
 }

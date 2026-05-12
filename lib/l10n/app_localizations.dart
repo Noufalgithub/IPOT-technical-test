@@ -236,7 +236,7 @@ abstract class AppLocalizations {
   /// No description provided for @emptyCart.
   ///
   /// In en, this message translates to:
-  /// **'Empty Cart'**
+  /// **'Cart is Empty'**
   String get emptyCart;
 
   /// No description provided for @addFavoriteMenu.
@@ -380,7 +380,7 @@ abstract class AppLocalizations {
   /// No description provided for @statusPending.
   ///
   /// In en, this message translates to:
-  /// **'Waiting for Confirmation'**
+  /// **'Waiting'**
   String get statusPending;
 
   /// No description provided for @statusConfirmed.
@@ -398,7 +398,7 @@ abstract class AppLocalizations {
   /// No description provided for @statusReady.
   ///
   /// In en, this message translates to:
-  /// **'Ready to Serve'**
+  /// **'Ready'**
   String get statusReady;
 
   /// No description provided for @statusServed.
@@ -539,24 +539,6 @@ abstract class AppLocalizations {
   /// **'Search menu...'**
   String get searchMenu;
 
-  /// No description provided for @failedPlaceOrder.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to place order: {message}'**
-  String failedPlaceOrder(String message);
-
-  /// No description provided for @itemsCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} items'**
-  String itemsCount(int count);
-
-  /// No description provided for @cartEmpty.
-  ///
-  /// In en, this message translates to:
-  /// **'Cart is Empty'**
-  String get cartEmpty;
-
   /// No description provided for @addNote.
   ///
   /// In en, this message translates to:
@@ -569,12 +551,6 @@ abstract class AppLocalizations {
   /// **'Checkout'**
   String get checkout;
 
-  /// No description provided for @clearCartMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove all items from cart?'**
-  String get clearCartMessage;
-
   /// No description provided for @remove.
   ///
   /// In en, this message translates to:
@@ -584,32 +560,32 @@ abstract class AppLocalizations {
   /// No description provided for @table.
   ///
   /// In en, this message translates to:
-  /// **'Table'**
-  String get table;
+  /// **'Table {id}'**
+  String table(String id);
 
-  /// No description provided for @orderID.
+  /// No description provided for @tableLabel.
   ///
   /// In en, this message translates to:
-  /// **'Order ID'**
-  String get orderID;
+  /// **'Table'**
+  String get tableLabel;
+
+  /// No description provided for @free.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get free;
+
+  /// No description provided for @digitalOrdering.
+  ///
+  /// In en, this message translates to:
+  /// **'Digital Ordering'**
+  String get digitalOrdering;
 
   /// No description provided for @mins.
   ///
   /// In en, this message translates to:
   /// **'{time} mins'**
   String mins(int time);
-
-  /// No description provided for @orderPlaced.
-  ///
-  /// In en, this message translates to:
-  /// **'Order Placed Successfully!'**
-  String get orderPlaced;
-
-  /// No description provided for @orderDetails.
-  ///
-  /// In en, this message translates to:
-  /// **'Order Details'**
-  String get orderDetails;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

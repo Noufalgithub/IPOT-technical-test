@@ -139,8 +139,12 @@ class _MenuViewState extends State<_MenuView>
                   children: [
                     Text(AppLocalizations.of(context)!.menu, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
                     Text(
-                      '${AppLocalizations.of(context)!.table} ${widget.tableId}',
-                      style: const TextStyle(color: AppTheme.accentColor, fontSize: 12, fontWeight: FontWeight.w500),
+                      AppLocalizations.of(context)!.table(widget.tableId),
+                      style: const TextStyle(
+                        color: AppTheme.accentColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),

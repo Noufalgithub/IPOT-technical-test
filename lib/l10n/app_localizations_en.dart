@@ -82,7 +82,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get clearAll => 'Clear All';
 
   @override
-  String get emptyCart => 'Empty Cart';
+  String get emptyCart => 'Cart is Empty';
 
   @override
   String get addFavoriteMenu => 'Add your favorite menu!';
@@ -156,7 +156,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderCompleted => 'Order Completed';
 
   @override
-  String get statusPending => 'Waiting for Confirmation';
+  String get statusPending => 'Waiting';
 
   @override
   String get statusConfirmed => 'Confirmed';
@@ -165,7 +165,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusPreparing => 'Preparing';
 
   @override
-  String get statusReady => 'Ready to Serve';
+  String get statusReady => 'Ready';
 
   @override
   String get statusServed => 'Served';
@@ -239,44 +239,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchMenu => 'Search menu...';
 
   @override
-  String failedPlaceOrder(String message) {
-    return 'Failed to place order: $message';
-  }
-
-  @override
-  String itemsCount(int count) {
-    return '$count items';
-  }
-
-  @override
-  String get cartEmpty => 'Cart is Empty';
-
-  @override
   String get addNote => 'Add note (optional)';
 
   @override
   String get checkout => 'Checkout';
 
   @override
-  String get clearCartMessage => 'Remove all items from cart?';
-
-  @override
   String get remove => 'Remove';
 
   @override
-  String get table => 'Table';
+  String table(String id) {
+    return 'Table $id';
+  }
 
   @override
-  String get orderID => 'Order ID';
+  String get tableLabel => 'Table';
+
+  @override
+  String get free => 'Free';
+
+  @override
+  String get digitalOrdering => 'Digital Ordering';
 
   @override
   String mins(int time) {
     return '$time mins';
   }
-
-  @override
-  String get orderPlaced => 'Order Placed Successfully!';
-
-  @override
-  String get orderDetails => 'Order Details';
 }

@@ -164,7 +164,7 @@ class _ScannerScreenState extends State<ScannerScreen>
                                 ),
                           ),
                           Text(
-                            'Digital Ordering',
+                            AppLocalizations.of(context)!.digitalOrdering,
                             style: TextStyle(
                               color: AppTheme.textSecondary,
                               fontSize: 11,
