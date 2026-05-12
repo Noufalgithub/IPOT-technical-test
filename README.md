@@ -1,57 +1,58 @@
-# 📱 IPOT — Customer QR Ordering System
+# 📱 IPOT — Mobile Developer Technical Test
 
-A Flutter mobile application for restaurant QR-based ordering. Customers scan a QR code at their table, browse the menu, customize items, and submit orders — all from their phone.
+A high-performance, polished Flutter application for restaurant QR-based ordering, built as part of the technical assessment for IPOT.
 
-## ✨ Features
-
-- **QR Scanner** — Scan table QR codes or manual entry.
-- **Dynamic Menu** — Browse menu with categories and availability.
-- **Customization** — Select options and modifiers for each dish.
-- **Smart Cart** — Manage items, quantities, and notes.
-- **Order Tracking** — Real-time status updates (Pending → Served).
-- **Internationalization (i18n)** — Full support for **English** and **Chinese (Simplified)** based on system settings.
-
-## 🛠 Tech Stack
+## 🚀 Tech Stack
 
 - **Framework:** Flutter (Dart)
+- **Architecture:** Clean Architecture (Core, Data, Presentation)
 - **State Management:** BLoC / Cubit
 - **Navigation:** GoRouter
-- **HTTP Client:** Dio
 - **Dependency Injection:** GetIt
-- **Localizations:** Flutter Gen-L10n
+- **Localization:** Flutter Gen-L10n (English & Chinese)
 
-## 🚀 Getting Started
+## ✅ Implementation Checklist
 
-### Setup & Run
+Below is the status of features implemented based on the technical requirements:
 
-1. **Install dependencies**:
-   ```bash
-   flutter pub get
-   ```
+### **Core Features**
+- [x] **QR Code Scanner** — Scans `ipot://table/{id}` and navigates to the menu.
+- [x] **Dynamic Menu Browser** — Browse items by categories with search filtering.
+- [x] **Cart & Customizations** — Add/remove items with quantity controls and modifiers (e.g., Spicy Level).
+- [x] **Order Submission** — Submit orders with real-time feedback.
+- [x] **Multi-language Support** — Full **English** and **Chinese** localization.
 
-2. **Generate Localization files**:
-   ```bash
-   flutter gen-l10n
-   ```
+### **Technical Requirements**
+- [x] **Clean Architecture** — Separated layers for better maintainability.
+- [x] **State Management** — Robust logic handling using Cubit.
+- [x] **Unit Testing** — Meaningful tests for Cart and calculation logic.
+- [x] **Responsive UI** — Polished design that works across different screen sizes.
 
-3. **Run the app**:
-   ```bash
-   flutter run
-   ```
+### **Bonus Features**
+- [x] **Order Tracking** — Real-time status updates (Pending → Preparing → Served).
+- [x] **Micro-animations** — Smooth transitions and interactive elements for a premium feel.
 
-### Running Tests
+## 🛠 Getting Started
 
-```bash
-flutter test
-```
+1.  **Install dependencies**:
+    ```bash
+    flutter pub get
+    ```
 
-## 📂 Architecture
+2.  **Generate Localization files**:
+    ```bash
+    flutter gen-l10n
+    ```
 
-The project follows **Clean Architecture** patterns:
-- `core/`: Themes, constants, and global utilities.
-- `data/`: Models, Repositories, and Data Sources (including mock data fallback).
-- `presentation/`: UI screens, widgets, and Cubit logic.
-- `l10n/`: Localization dictionaries (ARB).
+3.  **Run the application**:
+    ```bash
+    flutter run
+    ```
+
+4.  **Run tests**:
+    ```bash
+    flutter test
+    ```
 
 ---
-Created as part of the **IPOT Mobile Developer Technical Test**.
+*Created by Noufal Ibrahim*
