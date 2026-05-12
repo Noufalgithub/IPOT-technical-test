@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ipot_technical_test/injection_container.dart';
 import 'package:ipot_technical_test/main.dart';
 
 void main() {
-  setUpAll(() {
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
     // Initialize dependency injection before widget tests
-    setupDependencies();
+    setupDependencies(prefs);
   });
 
   testWidgets('App renders without crashing', (WidgetTester tester) async {

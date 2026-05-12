@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../core/theme/app_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../locale_cubit.dart';
 import '../../router.dart';
 import 'package:ipot_technical_test/l10n/app_localizations.dart';
 
@@ -172,6 +174,42 @@ class _ScannerScreenState extends State<ScannerScreen>
                             ),
                           ),
                         ],
+                      ),
+                      const Spacer(),
+                      BlocBuilder<LocaleCubit, Locale?>(
+                        builder: (context, locale) {
+                          final isChinese = locale?.languageCode == 'zh';
+                          return Row(
+                            children: [
+                              const Text('EN',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold)),
+                              Transform.scale(
+                                scale: 0.7,
+                                child: Switch(
+                                  value: isChinese,
+                                  onChanged: (val) {
+                                    context
+                                        .read<LocaleCubit>()
+                                        .setLocale(val ? 'zh' : 'en');
+                                  },
+                                  activeThumbColor: AppTheme.accentColor,
+                                  activeTrackColor:
+                                      AppTheme.accentColor.withAlpha(76),
+                                  inactiveThumbColor: Colors.white70,
+                                  inactiveTrackColor: Colors.white24,
+                                ),
+                              ),
+                              const Text('ZH',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
