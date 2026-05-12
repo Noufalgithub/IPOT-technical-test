@@ -40,7 +40,7 @@ class _MenuView extends StatefulWidget {
 }
 
 class _MenuViewState extends State<_MenuView>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   TabController? _tabController;
   final _searchController = TextEditingController();
   bool _isSearching = false;

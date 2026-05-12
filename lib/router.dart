@@ -4,6 +4,9 @@ import 'presentation/menu/menu_screen.dart';
 import 'presentation/cart/cart_screen.dart';
 import 'presentation/order/order_confirmation_screen.dart';
 import 'presentation/order/order_tracking_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'injection_container.dart';
+import 'presentation/order/cubit/order_cubit.dart';
 
 class AppRouter {
   AppRouter._();
@@ -43,9 +46,12 @@ class AppRouter {
         name: 'orderConfirmation',
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          return OrderConfirmationScreen(
-            orderId: extra?['orderId'] ?? '',
-            tableId: extra?['tableId'] ?? '',
+          return BlocProvider(
+            create: (context) => sl<OrderCubit>(),
+            child: OrderConfirmationScreen(
+              orderId: extra?['orderId'] ?? '',
+              tableId: extra?['tableId'] ?? '',
+            ),
           );
         },
       ),
@@ -54,8 +60,11 @@ class AppRouter {
         name: 'orderTracking',
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          return OrderTrackingScreen(
-            orderId: extra?['orderId'] ?? '',
+          return BlocProvider(
+            create: (context) => sl<OrderCubit>(),
+            child: OrderTrackingScreen(
+              orderId: extra?['orderId'] ?? '',
+            ),
           );
         },
       ),

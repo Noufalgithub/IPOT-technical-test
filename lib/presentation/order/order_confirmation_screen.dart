@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/formatters.dart';
-import '../../injection_container.dart';
 import '../../router.dart';
 import 'cubit/order_cubit.dart';
 import 'package:ipot_technical_test/l10n/app_localizations.dart';
@@ -19,9 +18,7 @@ class OrderConfirmationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: sl<OrderCubit>(),
-      child: BlocBuilder<OrderCubit, OrderState>(
+    return BlocBuilder<OrderCubit, OrderState>(
         builder: (context, state) {
           final order = state is OrderPlaced ? state.order : null;
 
@@ -211,7 +208,6 @@ class OrderConfirmationScreen extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
+      );
   }
 }
