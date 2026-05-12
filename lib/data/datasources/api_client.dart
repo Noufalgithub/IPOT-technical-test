@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../core/constants/api_constants.dart';
 
 class ApiClient {
@@ -17,14 +18,16 @@ class ApiClient {
       ),
     );
 
-    // Add logging interceptor in debug mode
+    // Add pretty logger in debug mode
     _dio.interceptors.add(
-      LogInterceptor(
+      PrettyDioLogger(
+        requestHeader: true,
         requestBody: true,
         responseBody: true,
-        error: true,
-        requestHeader: false,
         responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90,
       ),
     );
   }

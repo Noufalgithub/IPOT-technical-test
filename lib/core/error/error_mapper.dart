@@ -36,20 +36,30 @@ class ErrorMapper {
             originalError: error,
           );
         default:
-          if (error.error is SocketException) {
+          final errorStr = error.toString().toLowerCase();
+          final innerError = error.error;
+
+          if (innerError is SocketException ||
+              errorStr.contains('socketexception') ||
+              errorStr.contains('connection refused')) {
             return AppException(
               message: 'No internet connection',
               type: ErrorType.network,
               originalError: error,
             );
           }
-          if (error.error is HandshakeException) {
-             return AppException(
+
+          if (innerError is HandshakeException ||
+              errorStr.contains('handshake') ||
+              errorStr.contains('tls') ||
+              errorStr.contains('cert')) {
+            return AppException(
               message: 'Secure connection failed',
               type: ErrorType.handshake,
               originalError: error,
             );
           }
+
           return AppException(
             message: 'Unexpected error occurred',
             type: ErrorType.unknown,
@@ -58,7 +68,9 @@ class ErrorMapper {
       }
     }
     
-    if (error is SocketException) {
+    final errorStr = error.toString().toLowerCase();
+
+    if (error is SocketException || errorStr.contains('socketexception')) {
       return AppException(
         message: 'Network connection issue',
         type: ErrorType.network,
@@ -66,7 +78,9 @@ class ErrorMapper {
       );
     }
 
-    if (error is HandshakeException) {
+    if (error is HandshakeException ||
+        errorStr.contains('handshake') ||
+        errorStr.contains('tls')) {
       return AppException(
         message: 'Secure connection failed',
         type: ErrorType.handshake,
