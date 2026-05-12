@@ -581,6 +581,36 @@ abstract class AppLocalizations {
   /// **'Digital Ordering'**
   String get digitalOrdering;
 
+  /// No description provided for @errorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection issue. Please check your internet.'**
+  String get errorNetwork;
+
+  /// No description provided for @errorServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Server is currently unavailable. Please try again later.'**
+  String get errorServer;
+
+  /// No description provided for @errorTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Request timed out. Please try again.'**
+  String get errorTimeout;
+
+  /// No description provided for @errorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred.'**
+  String get errorUnknown;
+
+  /// No description provided for @errorHandshake.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure connection failed. Please check your network settings.'**
+  String get errorHandshake;
+
   /// No description provided for @mins.
   ///
   /// In en, this message translates to:

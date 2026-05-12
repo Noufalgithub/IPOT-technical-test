@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import '../../core/constants/api_constants.dart';
 import '../datasources/api_client.dart';
-import '../datasources/mock_data.dart';
 import '../models/cart_item_model.dart';
 import '../models/order_model.dart';
+import '../../core/error/error_mapper.dart';
 
 class OrderRepository {
   final ApiClient _apiClient;
@@ -33,13 +33,8 @@ class OrderRepository {
         return OrderModel.fromJson(data['data'] ?? data);
       }
       throw Exception('Failed to place order: ${response.statusCode}');
-    } on DioException catch (_) {
-      // Simulate successful order with mock data
-      await Future.delayed(const Duration(seconds: 1));
-      return MockData.getMockOrder(tableId);
-    } catch (_) {
-      await Future.delayed(const Duration(seconds: 1));
-      return MockData.getMockOrder(tableId);
+    } catch (e) {
+      throw ErrorMapper.map(e);
     }
   }
 

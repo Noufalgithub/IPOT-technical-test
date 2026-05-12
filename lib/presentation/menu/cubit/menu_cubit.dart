@@ -2,6 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../data/models/category_model.dart';
 import '../../../data/repositories/menu_repository.dart';
+import '../../../core/error/error_mapper.dart';
+import '../../../core/error/exceptions.dart';
 
 // States
 abstract class MenuState extends Equatable {
@@ -61,12 +63,12 @@ class MenuLoaded extends MenuState {
 }
 
 class MenuError extends MenuState {
-  final String message;
+  final AppException exception;
 
-  const MenuError(this.message);
+  const MenuError(this.exception);
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [exception];
 }
 
 // Cubit
@@ -80,8 +82,10 @@ class MenuCubit extends Cubit<MenuState> {
     try {
       final categories = await _menuRepository.getMenu(tableId);
       emit(MenuLoaded(categories: categories, tableId: tableId));
+    } on AppException catch (e) {
+      emit(MenuError(e));
     } catch (e) {
-      emit(MenuError(e.toString()));
+      emit(MenuError(ErrorMapper.map(e)));
     }
   }
 

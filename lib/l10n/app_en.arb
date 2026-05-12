@@ -119,6 +119,12 @@
   "free": "Free",
   "digitalOrdering": "Digital Ordering",
 
+  "errorNetwork": "Connection issue. Please check your internet.",
+  "errorServer": "Server is currently unavailable. Please try again later.",
+  "errorTimeout": "Request timed out. Please try again.",
+  "errorUnknown": "An unexpected error occurred.",
+  "errorHandshake": "Secure connection failed. Please check your network settings.",
+
   "mins": "{time} mins",
   "@mins": {
     "placeholders": {

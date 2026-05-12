@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/error/exceptions.dart';
 import '../../core/utils/formatters.dart';
 import '../../data/models/menu_item_model.dart';
 import '../../injection_container.dart';
@@ -61,7 +62,7 @@ class _MenuViewState extends State<_MenuView>
           BlocBuilder<MenuCubit, MenuState>(
             builder: (context, state) {
               if (state is MenuLoading) return _buildLoading();
-              if (state is MenuError) return _buildError(state.message);
+              if (state is MenuError) return _buildError(state.exception);
               if (state is MenuLoaded) return _buildMenu(context, state);
               return const SizedBox.shrink();
             },
@@ -89,22 +90,37 @@ class _MenuViewState extends State<_MenuView>
     );
   }
 
-  Widget _buildError(String message) {
+  Widget _buildError(AppException exception) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.error_outline, color: AppTheme.errorColor, size: 64),
-          const SizedBox(height: 16),
-          Text(AppLocalizations.of(context)!.failedLoadMenu, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8),
-          Text(message, style: TextStyle(color: AppTheme.textSecondary), textAlign: TextAlign.center),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () => context.read<MenuCubit>().loadMenu(widget.tableId),
-            child: Text(AppLocalizations.of(context)!.tryAgain),
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, color: AppTheme.errorColor, size: 64),
+            const SizedBox(height: 16),
+            Text(AppLocalizations.of(context)!.failedLoadMenu,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text(exception.getLocalizedMessage(context),
+                style: const TextStyle(color: AppTheme.textSecondary),
+                textAlign: TextAlign.center),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => context.read<MenuCubit>().loadMenu(widget.tableId),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.accentColor,
+                foregroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+              ),
+              child: Text(AppLocalizations.of(context)!.tryAgain),
+            ),
+          ],
+        ),
       ),
     );
   }

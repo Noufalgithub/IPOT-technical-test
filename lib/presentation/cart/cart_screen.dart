@@ -48,7 +48,8 @@ class _CartScreenState extends State<CartScreen> {
           } else if (state is OrderError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(AppLocalizations.of(context)!.failedCreateOrder(state.message)),
+                content: Text(AppLocalizations.of(context)!
+                    .failedCreateOrder(state.exception.getLocalizedMessage(context))),
                 backgroundColor: AppTheme.errorColor,
               ),
             );

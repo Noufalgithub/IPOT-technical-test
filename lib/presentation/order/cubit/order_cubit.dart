@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 import '../../../data/models/cart_item_model.dart';
 import '../../../data/models/order_model.dart';
 import '../../../data/repositories/order_repository.dart';
+import '../../../core/error/error_mapper.dart';
+import '../../../core/error/exceptions.dart';
 
 // States
 abstract class OrderState extends Equatable {
@@ -37,12 +39,12 @@ class OrderTracking extends OrderState {
 }
 
 class OrderError extends OrderState {
-  final String message;
+  final AppException exception;
 
-  const OrderError(this.message);
+  const OrderError(this.exception);
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [exception];
 }
 
 // Cubit
@@ -65,8 +67,10 @@ class OrderCubit extends Cubit<OrderState> {
         customerNote: customerNote,
       );
       emit(OrderPlaced(order));
+    } on AppException catch (e) {
+      emit(OrderError(e));
     } catch (e) {
-      emit(OrderError(e.toString()));
+      emit(OrderError(ErrorMapper.map(e)));
     }
   }
 

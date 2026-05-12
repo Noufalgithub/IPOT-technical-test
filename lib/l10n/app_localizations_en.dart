@@ -262,6 +262,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitalOrdering => 'Digital Ordering';
 
   @override
+  String get errorNetwork => 'Connection issue. Please check your internet.';
+
+  @override
+  String get errorServer => 'Server is currently unavailable. Please try again later.';
+
+  @override
+  String get errorTimeout => 'Request timed out. Please try again.';
+
+  @override
+  String get errorUnknown => 'An unexpected error occurred.';
+
+  @override
+  String get errorHandshake => 'Secure connection failed. Please check your network settings.';
+
+  @override
   String mins(int time) {
     return '$time mins';
   }

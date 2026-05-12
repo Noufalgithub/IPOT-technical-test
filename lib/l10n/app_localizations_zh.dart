@@ -262,6 +262,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get digitalOrdering => '数字化点餐';
 
   @override
+  String get errorNetwork => '网络连接问题，请检查您的网络。';
+
+  @override
+  String get errorServer => '服务器目前不可用，请稍后再试。';
+
+  @override
+  String get errorTimeout => '请求超时，请重试。';
+
+  @override
+  String get errorUnknown => '发生了意外错误。';
+
+  @override
+  String get errorHandshake => '安全连接失败，请检查您的网络设置。';
+
+  @override
   String mins(int time) {
     return '$time 分钟';
   }

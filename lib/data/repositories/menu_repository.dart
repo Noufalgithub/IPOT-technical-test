@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/api_constants.dart';
 import '../datasources/api_client.dart';
@@ -34,9 +33,9 @@ class MenuRepository {
             .toList();
       }
       throw Exception('Failed to load menu: ${response.statusCode}');
-    } on DioException catch (_) {
-      return _getFallbackData(cacheKey);
-    } catch (_) {
+    } catch (e) {
+      // For menu loading, we still want to try fallback to keep app usable
+      // but we could also throw ErrorMapper.map(e) if we wanted to show error screen
       return _getFallbackData(cacheKey);
     }
   }
